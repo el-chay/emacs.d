@@ -5,8 +5,9 @@
 (setq x-select-enable-primary t)
 (setq inhibit-startup-screen t)
 (setq menu-bar-mode nil)
-(tool-bar-mode nil)
 (setq require-final-newline t)
+(setq visible-bell 'yea)
+(tool-bar-mode nil)
 
 ; Package(s)
 (require 'package)
@@ -14,7 +15,7 @@
 (add-to-list 'package-archives '("melpa" . "http://stable.melpa.org/packages/"))
 
 (package-initialize)
-(package-refresh-contents)
+(run-with-idle-timer 45 nil 'package-refresh-contents)
 
 (when (not (package-installed-p 'use-package))
     (package-install 'use-package))
