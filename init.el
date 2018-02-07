@@ -27,6 +27,12 @@
   :ensure t
   :config (evil-mode))
 
+(use-package magit
+  :ensure t)
+
+(use-package evil-magit
+  :ensure t)
+
 (use-package zenburn-theme
   :ensure t
   :config (load-theme 'zenburn t))
@@ -48,9 +54,6 @@
          ("\\.markdown\\'" . markdown-mode)))
 
 (use-package flycheck
-  :ensure t)
-(global-flycheck-mode)
-
-(use-package magit
-  :ensure t)
+  :ensure t
+  :init (global-flycheck-mode))
 ;;; init.el ends here
