@@ -8,17 +8,20 @@
 (setq require-final-newline t)
 (setq visible-bell 'yea)
 (tool-bar-mode nil)
+(column-number-mode)
 
 ; Package(s)
 (require 'package)
 (add-to-list 'package-archives '("gnu" . "http://elpa.gnu.org/packages/"))
-(add-to-list 'package-archives '("melpa" . "http://stable.melpa.org/packages/"))
-
+(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
+(add-to-list 'load-path (concat user-emacs-directory "custom/"))
 (package-initialize)
 (run-with-idle-timer 45 nil 'package-refresh-contents)
 
+; Ensure use-package is installed (useful when starting from scratch)
 (when (not (package-installed-p 'use-package))
-    (package-install 'use-package))
+  (package-refresh-contents)
+  (package-install 'use-package))
 
 (use-package evil
   :ensure t
@@ -47,4 +50,7 @@
 (use-package flycheck
   :ensure t)
 (global-flycheck-mode)
+
+(use-package magit
+  :ensure t)
 ;;; init.el ends here
