@@ -7,6 +7,7 @@
 (setq menu-bar-mode nil)
 (setq require-final-newline t)
 (setq visible-bell 'yea)
+(setq font-lock-maximum-decoration t)
 (tool-bar-mode nil)
 (column-number-mode)
 
@@ -57,6 +58,8 @@
   :ensure t
   :init (global-flycheck-mode)
   :config (setq flycheck-shellcheck-follow-sources nil))
+
+(add-to-list 'auto-mode-alist '("\\.ks\\'" . shell-script-mode))
 ;;; init.el ends here
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
