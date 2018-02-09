@@ -4,18 +4,18 @@
 (show-paren-mode)
 (setq x-select-enable-primary t)
 (setq inhibit-startup-screen t)
-(setq menu-bar-mode nil)
 (setq require-final-newline t)
 (setq visible-bell 'yea)
 (setq font-lock-maximum-decoration t)
-(tool-bar-mode nil)
 (column-number-mode)
+(menu-bar-mode 0)
+(tool-bar-mode 0)
 
 ; Package(s)
 (require 'package)
 (add-to-list 'package-archives '("gnu" . "http://elpa.gnu.org/packages/"))
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
-(add-to-list 'load-path (concat user-emacs-directory "custom/"))
+(add-to-list 'load-path (concat user-emacs-directory "custom.el/"))
 (package-initialize)
 (run-with-idle-timer 45 nil 'package-refresh-contents)
 
@@ -26,7 +26,11 @@
 
 (use-package evil
   :ensure t
-  :config (evil-mode))
+  :config
+  (evil-mode)
+  (global-set-key [C-tab] 'evil-window-next)
+  (require 'evil-leader)
+  (global-evil-leader-mode))
 
 (use-package magit
   :ensure t)
