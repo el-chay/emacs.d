@@ -11,8 +11,10 @@
 
 ; Package(s)
 (require 'package)
-(add-to-list 'package-archives '("gnu" . "http://elpa.gnu.org/packages/"))
-(add-to-list 'package-archives '("melpa" . "http://stable.melpa.org/packages/"))
+(add-to-list 'package-archives
+	     '("gnu" . "http://elpa.gnu.org/packages/"))
+(add-to-list 'package-archives
+	     '("melpa" . "http://stable.melpa.org/packages/"))
 
 (package-initialize)
 (run-with-idle-timer 45 nil 'package-refresh-contents)
