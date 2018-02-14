@@ -51,6 +51,7 @@ values."
      spell-checking
      syntax-checking
      themes-megapack
+     scheme
      ;; version-control
      )
    ;; List of additional packages that will be installed without being
@@ -314,7 +315,8 @@ This is the place where most of your configurations should be done. Unless it is
 explicitly specified that a variable should be set before a package is loaded,
 you should place your code here."
   (custom-set-variables
-     '(evil-search-module (quote evil-search)))
+     '(evil-search-module (quote evil-search))
+     '(geiser-repl-skip-version-check-p t))
   (setq c-default-style "linux" c-basic-offset 4)
   (setq-default tab-width 4 indent-tabs-mode nil)
   )
