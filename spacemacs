@@ -164,7 +164,7 @@ values."
    ;; and TAB or <C-m> and RET.
    ;; In the terminal, these pairs are generally indistinguishable, so this only
    ;; works in the GUI. (default nil)
-   dotspacemacs-distinguish-gui-tab nil
+   dotspacemacs-distinguish-gui-tab t
    ;; If non nil `Y' is remapped to `y$' in Evil states. (default nil)
    dotspacemacs-remap-Y-to-y$ nil
    ;; If non-nil, the shift mappings `<' and `>' retain visual state if used
@@ -319,4 +319,5 @@ you should place your code here."
      '(geiser-repl-skip-version-check-p t))
   (setq c-default-style "linux" c-basic-offset 4)
   (setq-default tab-width 4 indent-tabs-mode nil)
+  (add-to-list 'auto-mode-alist '("\\.ks\\'" . shell-script-mode))
   )
