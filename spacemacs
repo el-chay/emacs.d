@@ -31,16 +31,13 @@ values."
    ;; List of configuration layers to load.
    dotspacemacs-configuration-layers
    '(
+     haskell
+     sql
      python
      vimscript
      javascript
      ruby
      html
-     ;; ----------------------------------------------------------------
-     ;; Example of useful layers you may want to use right away.
-     ;; Uncomment some layer names and press <SPC f e R> (Vim style) or
-     ;; <M-m f e R> (Emacs style) to install them.
-     ;; ----------------------------------------------------------------
      helm
      auto-completion
      better-defaults
@@ -57,6 +54,7 @@ values."
      themes-megapack
      scheme
      common-lisp
+     erlang
      ;; version-control
      )
    ;; List of additional packages that will be installed without being
@@ -310,6 +308,7 @@ executes.
  This function is mostly useful for variables that need to be set
 before packages are loaded. If you are unsure, you should try in setting them in
 `dotspacemacs/user-config' first."
+  (modify-syntax-entry ?_ "w")
   )
 
 (defun dotspacemacs/user-config ()
@@ -321,8 +320,12 @@ explicitly specified that a variable should be set before a package is loaded,
 you should place your code here."
   (custom-set-variables
      '(evil-search-module (quote evil-search))
-     '(geiser-repl-skip-version-check-p t))
+     '(geiser-repl-skip-version-check-p t)
+     '(evil-escape-key-sequence "<>"))
   (setq c-default-style "linux" c-basic-offset 4)
   (setq-default tab-width 4 indent-tabs-mode nil)
   (add-to-list 'auto-mode-alist '("\\.ks\\'" . shell-script-mode))
+  (add-hook 'spacemacs-buffer-mode-hook (lambda ()
+                                          (set (make-local-variable 'mouse-1-click-follows-link) nil)))
+  (add-hook 'prog-mode-hook #'(lambda () (modify-syntax-entry ?_ "w")))
   )
