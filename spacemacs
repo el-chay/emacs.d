@@ -55,6 +55,7 @@ values."
      scheme
      common-lisp
      erlang
+     xkcd
      ;; version-control
      )
    ;; List of additional packages that will be installed without being
@@ -328,4 +329,17 @@ you should place your code here."
   (add-hook 'spacemacs-buffer-mode-hook (lambda ()
                                           (set (make-local-variable 'mouse-1-click-follows-link) nil)))
   (add-hook 'prog-mode-hook #'(lambda () (modify-syntax-entry ?_ "w")))
+  (defun rpm-chlog ()
+    "Write rpm changelog date format"
+    (interactive)
+    (insert (shell-command-to-string
+             "date +'* %a %b %d %Y '\"$(git config --get user.name)\"' <'\"$(git config --get user.email)\"'>'")))
+  ;; SQL mode hack for escape char
+  ;;(setq sql-mode-hook nil)
+  (add-hook 'sql-mode-hook
+            (lambda ()
+              (modify-syntax-entry ?\\ "\\" sql-mode-syntax-table)))
+  ;; Fix for tcl-mode double-quotes expansion
+  (add-hook 'tcl-mode-hook
+            (lambda () (modify-syntax-entry ?\" "_" tcl-mode-syntax-table)))
   )
